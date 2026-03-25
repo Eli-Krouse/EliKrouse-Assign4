@@ -47,6 +47,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="d55-qL-HL4"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="tipSliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="tsq-bN-gWV"/>
+                                </connections>
                             </slider>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="exx-2b-Zzd">
                                 <rect key="frame" x="221" y="320" width="97" height="34"/>
@@ -74,6 +77,9 @@
                                         <integer key="value" value="12"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="peopleStepperTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="8tk-pT-uPP"/>
+                                </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Money (per person): " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdv-fP-fDV">
                                 <rect key="frame" x="38" y="621" width="183" height="24"/>
@@ -147,6 +153,15 @@
                             <constraint firstItem="r09-rw-7S9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="46" id="z6X-rL-5pi"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="billTotalTextField" destination="5xx-00-G7j" id="cEi-x5-TjW"/>
+                        <outlet property="generosityLabel" destination="Lal-dZ-lqc" id="nhN-rQ-cHK"/>
+                        <outlet property="moneyPerPersonLabel" destination="hwi-1z-I4T" id="SRT-WI-83i"/>
+                        <outlet property="peopleStepper" destination="egT-mq-yp3" id="JrE-y5-5eA"/>
+                        <outlet property="peopleTextField" destination="ovc-3S-OHM" id="e2f-g5-CVe"/>
+                        <outlet property="percentTipTextField" destination="exx-2b-Zzd" id="uEi-VN-1Ih"/>
+                        <outlet property="tipSlider" destination="r09-rw-7S9" id="5rn-45-6qf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
