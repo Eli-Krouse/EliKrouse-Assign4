@@ -36,29 +36,28 @@ class ViewController: UIViewController
         peopleTextField.text = "\(Int(peopleStepper.value))"
     }
     
-    @IBAction func tipManual(_ sender: Any)
-    {
-
-    }
-    
-    @IBAction func peopleManual(_ sender: Any)
-    {
-        
-    }
     
     
     @IBAction func calculate(_ sender: Any)
     {
         //calculation section
-        guard let tip = percentTipTextField.text, let people = peopleTextField.text, let total = billTotalTextField.text else
+        guard let tip = percentTipTextField.text, let dTip: Double = Double(tip), let people = peopleTextField.text, let iPeople: Int = Int(people), let total = billTotalTextField.text, let dTotal: Double = Double(total) else
         {
-            print("VOID IN PERCENT_TIP , PEOPLE , OR BILL_TOTAL")
-            return;
+            print("ERROR IN PERCENT_TIP , PEOPLE , OR BILL_TOTAL")
+            return
         }
         
+        let split = BillSplit(tipPercent: dTip, bill: dTotal, people: iPeople)
         
+        moneyPerPersonLabel.text = "$ " + String(format: "%.2f", split.calcPerPerson())
 
+        
+    
     }
+    
+    
+    
+    
     
     
     override func viewDidLoad()
@@ -76,17 +75,17 @@ class ViewController: UIViewController
     {
         var tipPercent: Double
         var bill: Double
-        var people: Double
+        var people: Int
         
-        init(tipPercent: Double, bill: Double, people: Double)
+        init(tipPercent: Double, bill: Double, people: Int)
         {
             self.tipPercent = tipPercent
             self.bill = bill
             self.people = people
         }
-        func calcPerPerson()
+        func calcPerPerson() -> Double
         {
-            
+            return bill + (bill * (tipPercent/100)) / Double(people)
         }
     }
     
