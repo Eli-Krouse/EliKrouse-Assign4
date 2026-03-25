@@ -28,13 +28,37 @@ class ViewController: UIViewController
     @IBAction func tipSliderChanged(_ sender: Any)
     {
         
+        percentTipTextField.text = String(format: "%.1f", tipSlider.value)
     }
     
     @IBAction func peopleStepperTapped(_ sender: Any)
     {
+        peopleTextField.text = "\(Int(peopleStepper.value))"
+    }
+    
+    @IBAction func tipManual(_ sender: Any)
+    {
+
+    }
+    
+    @IBAction func peopleManual(_ sender: Any)
+    {
         
     }
     
+    
+    @IBAction func calculate(_ sender: Any)
+    {
+        //calculation section
+        guard let tip = percentTipTextField.text, let people = peopleTextField.text, let total = billTotalTextField.text else
+        {
+            print("VOID IN PERCENT_TIP , PEOPLE , OR BILL_TOTAL")
+            return;
+        }
+        
+        
+
+    }
     
     
     override func viewDidLoad()
@@ -42,11 +66,30 @@ class ViewController: UIViewController
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        tipSlider.value = 20.0
-        peopleStepper.value = 2
+        percentTipTextField.text = "\(Double(tipSlider.value))"
+        peopleTextField.text = "\(Int(peopleStepper.value))"
         
         
     }
+    
+    class BillSplit
+    {
+        var tipPercent: Double
+        var bill: Double
+        var people: Double
+        
+        init(tipPercent: Double, bill: Double, people: Double)
+        {
+            self.tipPercent = tipPercent
+            self.bill = bill
+            self.people = people
+        }
+        func calcPerPerson()
+        {
+            
+        }
+    }
+    
 
 
 }
