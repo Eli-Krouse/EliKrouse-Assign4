@@ -54,7 +54,7 @@ class ViewController: UIViewController
         
         let split = BillSplit(tipPercent: dTip, bill: dTotal, people: iPeople)
         
-        moneyPerPersonLabel.text = "$ " + String(format: "%.2f", split.calcPerPerson())
+        moneyPerPersonLabel.text = "$ " + String(format: "%.2f", split.amounts().2)
         
         animateMyCalc()
     }
@@ -69,13 +69,6 @@ class ViewController: UIViewController
     
     func generosity()
     {
-        guard let tip = Double(percentTipTextField.text!) else
-        {
-            generosityLabel.text = "BROKEN"
-            return
-        }
-        
-        
         
     }
     
@@ -113,10 +106,11 @@ class ViewController: UIViewController
             self.bill = bill
             self.people = people
         }
-        func calcPerPerson() -> Double
+        func amounts() -> (Double, Double, Double)
         {
-            return (bill + (bill * (tipPercent / 100))) / Double(people)
+            return ((bill * (tipPercent / 100)), (bill + (bill * (tipPercent / 100))), (bill + (bill * (tipPercent / 100))) / Double(people))
         }
+        
     }
     
 
