@@ -69,6 +69,26 @@ class ViewController: UIViewController
     
     func generosity()
     {
+        let myGenerosityText = {(tip: Double) -> (String, UIColor) in
+            switch(tip)
+            {
+                case 0..<10:
+                return ("VERY LOW", .red)
+                case 10..<20:
+                return ("Low", .yellow)
+                case 20..<30:
+                return ("Average", .green)
+                case 30..<40:
+                return ("Great", .blue)
+                case 40...100:
+                return ("EXTREME", .magenta)
+                default:
+                return ("lame", .black)
+            }
+        }
+        
+        generosityLabel.text = "Generosity: " + myGenerosityText(Double(tipSlider.value)).0
+        generosityLabel.textColor = myGenerosityText(Double(tipSlider.value)).1
         
     }
     
@@ -112,6 +132,8 @@ class ViewController: UIViewController
         }
         
     }
+    
+
     
 
 
