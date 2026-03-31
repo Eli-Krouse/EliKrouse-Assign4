@@ -44,19 +44,28 @@ class ViewController: UIViewController
         guard let tip = percentTipTextField.text, let dTip: Double = Double(tip), let people = peopleTextField.text, let iPeople: Int = Int(people), let total = billTotalTextField.text, let dTotal: Double = Double(total) else
         {
             print("ERROR IN PERCENT_TIP , PEOPLE , OR BILL_TOTAL")
+            showAlert("There was an Error in the calculation. Make sure you input a valid Bill Amount.")
             return
         }
         
         let split = BillSplit(tipPercent: dTip, bill: dTotal, people: iPeople)
         
         moneyPerPersonLabel.text = "$ " + String(format: "%.2f", split.calcPerPerson())
-
-        
-    
     }
     
+    func showAlert(_ myMessage: String, _ title: String? = "Error")
+    {
+        let alert = UIAlertController(title: title, message: myMessage, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
     
-    
+    func generosity()
+    {
+        generosityLabel.text = "Generosity 😊"
+        
+    }
     
     
     
