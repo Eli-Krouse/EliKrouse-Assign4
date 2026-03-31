@@ -24,11 +24,15 @@ class ViewController: UIViewController
     
     @IBOutlet weak var generosityLabel: UILabel!
     
+    @IBOutlet weak var aniPhoto: UIImageView!
+    
     
     @IBAction func tipSliderChanged(_ sender: Any)
     {
         
         percentTipTextField.text = String(format: "%.1f", tipSlider.value)
+        
+        generosity()
     }
     
     @IBAction func peopleStepperTapped(_ sender: Any)
@@ -51,6 +55,8 @@ class ViewController: UIViewController
         let split = BillSplit(tipPercent: dTip, bill: dTotal, people: iPeople)
         
         moneyPerPersonLabel.text = "$ " + String(format: "%.2f", split.calcPerPerson())
+        
+        animateMyCalc()
     }
     
     func showAlert(_ myMessage: String, _ title: String? = "Error")
@@ -63,10 +69,24 @@ class ViewController: UIViewController
     
     func generosity()
     {
-        generosityLabel.text = "Generosity 😊"
+        guard let tip = Double(percentTipTextField.text!) else
+        {
+            generosityLabel.text = "BROKEN"
+            return
+        }
+        
+        
         
     }
     
+    func animateMyCalc()
+    {
+        UIView.animate(withDuration: 4.0)
+        {
+            self.aniPhoto.frame = CGRect(x: 275, y: 100, width: 86, height: 83)
+            self.aniPhoto.alpha = 1
+        }completion: { _ in print("done"); self.aniPhoto.alpha = 0; self.aniPhoto.frame = CGRect(x: 15, y: 650, width: 86, height: 83)}
+    }
     
     
     override func viewDidLoad()
@@ -76,6 +96,7 @@ class ViewController: UIViewController
         
         percentTipTextField.text = "\(Double(tipSlider.value))"
         peopleTextField.text = "\(Int(peopleStepper.value))"
+        aniPhoto.alpha = 0
         
         
     }
@@ -94,7 +115,7 @@ class ViewController: UIViewController
         }
         func calcPerPerson() -> Double
         {
-            return bill + (bill * (tipPercent/100)) / Double(people)
+            return (bill + (bill * (tipPercent / 100))) / Double(people)
         }
     }
     
